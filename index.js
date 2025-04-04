@@ -1,8 +1,4 @@
-const bookId = document.getElementById("bookId");
-const bookTitle = document.getElementById("title");
-const bookAuthor = document.getElementById("author");
-const bookPages = document.getElementById("pages");
-const bookRead = document.getElementById("read");
+
 const addBookForm = document.getElementById("form");
 
 // buttons
@@ -30,16 +26,18 @@ function addBookToLibrary(book) {
   const bookElement = document.createElement("div");
   bookElement.classList.add("book");
 
-  // Add the book details to the new element
-  bookElement.innerHTML = `
-      <p>ID: ${crypto.randomUUID()}</p>
-      <p>Title: ${book.title}</p>
-      <p>Author: ${book.author}</p>
-      <p>Pages: ${book.pages}</p>
-      <p>Read: ${book.read}</p>
-    `;
 
-  // Append the new book element to the container
+  bookElement.innerHTML = `
+  <div class="card" id=${crypto.randomUUID()}>
+  <div class="card-details">
+  <p class="text-title">${book.title}</p>
+  <p class="text-body">${book.author}</p>
+  <p class="text-body">${book.pages} pages</p>
+  <p class="text-body">${book.read ? "True" : "False"}</p>
+  </div>
+<button class="card-button">Delete</button>
+  </div>
+    `;
   bookContainer.appendChild(bookElement);
 }
 
@@ -52,9 +50,22 @@ addBookToLibrarybtn.addEventListener("click", (e) => {
   const readInput = document.getElementById("add-read").value;
 
   let book1 = new Book(titleInput, authorInput, pagesInput, readInput);
+
   addBookToLibrary(book1);
 
   addBookForm.reset();
 
   addBookForm.style.display = "none";
+});
+
+const closeFormBtn = document.querySelector(".button-log");
+
+closeFormBtn.addEventListener("click", () => {
+  addBookForm.style.display = "none";
+});
+
+const deleteBookBtn = document.querySelector(".card-button");
+
+deleteBookBtn.addEventListener("click", () => {
+  
 });
