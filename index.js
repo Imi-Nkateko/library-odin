@@ -1,4 +1,3 @@
-
 const addBookForm = document.getElementById("form");
 
 // buttons
@@ -12,11 +11,13 @@ addBook.addEventListener("click", () => {
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 function addBookToLibrary(book) {
@@ -25,7 +26,6 @@ function addBookToLibrary(book) {
   // Create a new element for the new book
   const bookElement = document.createElement("div");
   bookElement.classList.add("book");
-
 
   bookElement.innerHTML = `
   <div class="card" id=${crypto.randomUUID()}>
@@ -66,6 +66,4 @@ closeFormBtn.addEventListener("click", () => {
 
 const deleteBookBtn = document.querySelector(".card-button");
 
-deleteBookBtn.addEventListener("click", () => {
-  
-});
+deleteBookBtn.addEventListener("click", () => {});
